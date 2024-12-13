@@ -163,16 +163,16 @@ function Keypress(evnt)
 
 function Redisplay() {
     // Render the main view
-    canvas.NewView(camera, at, up);
     canvas.Clear(); // Clear the WebGL context
-    canvas.DisplayViewport(); // Set the viewport for the main view
-    renderScene(false); // Render the main scene
-
+    canvas.NewStaticView(minimapMap, [0, 5, 0.5], up);
+    canvas.DisplayViewport(); // Set the viewport for the minimap
+    renderScene(true); // Render the minimap
+    
     // Render the minimap view
     canvas.ClearDepth(); // Clear the depth buffer only
-    canvas.NewStaticView(minimapMap, [0, 5, 0.5], up);
-    canvas.DisplayViewportInCorner(); // Set the viewport for the minimap
-    renderScene(true); // Render the minimap
+    canvas.NewView(camera, at, up);
+    canvas.DisplayViewportInCorner(); // Set the viewport for the main view
+    renderScene(false); // Render the main scene
 }
 
 function renderScene(isMinimap) {
